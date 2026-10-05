@@ -1,0 +1,21 @@
+{
+  "name": "my-clicker",
+  "version": "1.0.0",
+  "description": "My Clicker Game",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.myclicker.game",
+    "productName": "My Clicker",
+    "win": {
+      "target": "nsis"
+    }
+  }
+}
