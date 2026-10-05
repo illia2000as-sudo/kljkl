@@ -1,0 +1,231 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRITICAL SYSTEM ERROR</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Consolas, monospace;
+    color: #ff2020;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: screenShake 0.12s infinite;
+}
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,0,0,0.035) 4px
+    );
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.warning {
+    font-size: 110px;
+    animation: blink 0.5s infinite;
+    text-shadow: 0 0 30px red;
+}
+
+h1 {
+    margin: 5px 0;
+    font-size: clamp(40px, 7vw, 100px);
+    letter-spacing: 8px;
+    animation: glitch 0.8s infinite;
+}
+
+.subtitle {
+    font-size: clamp(18px, 2vw, 28px);
+    color: #ff5555;
+    margin-bottom: 30px;
+}
+
+.progress {
+    width: min(800px, 80vw);
+    height: 30px;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 20px #ff0000;
+}
+
+.bar {
+    width: 0%;
+    height: 100%;
+    background: #ff0000;
+    animation: loading 14s linear infinite;
+}
+
+.percent {
+    margin-top: 12px;
+    font-size: 22px;
+}
+
+.console {
+    width: min(850px, 85vw);
+    height: 180px;
+    margin-top: 25px;
+    padding: 15px;
+    text-align: left;
+    overflow: hidden;
+    background: rgba(30,0,0,0.8);
+    border: 1px solid #700000;
+    box-shadow: inset 0 0 25px #300000;
+    color: #ff4444;
+}
+
+.fake-error {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    color: #ff0000;
+    font-size: 14px;
+    opacity: .7;
+}
+
+@keyframes loading {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+@keyframes blink {
+    50% { opacity: .25; }
+}
+
+@keyframes glitch {
+    0%, 100% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-3px, 2px);
+    }
+    40% {
+        transform: translate(3px, -2px);
+    }
+    60% {
+        transform: translate(-2px, 0);
+    }
+}
+
+@keyframes screenShake {
+    0%, 100% { transform: translate(0); }
+    50% { transform: translate(1px, 0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scanlines"></div>
+
+<div class="fake-error">
+    SYSTEM_MONITOR.exe — CRITICAL
+</div>
+
+<div class="container">
+
+    <div class="warning">⚠</div>
+
+    <h1>SYSTEM INFECTED</h1>
+
+    <div class="subtitle">
+        CRITICAL SECURITY BREACH DETECTED
+    </div>
+
+    <div class="progress">
+        <div class="bar"></div>
+    </div>
+
+    <div class="percent" id="percent">
+        SYSTEM SCAN: 0%
+    </div>
+
+    <div class="console" id="console">
+        &gt; Initializing security scan...<br>
+        &gt; Connecting to system monitor...<br>
+        &gt; Scanning Windows processes...
+    </div>
+
+</div>
+
+<script>
+
+let percent = 0;
+
+setInterval(() => {
+    percent += Math.floor(Math.random() * 5);
+
+    if (percent >= 100) {
+        percent = 1;
+    }
+
+    document.getElementById("percent").textContent =
+        "SYSTEM SCAN: " + percent + "%";
+
+}, 500);
+
+
+const messages = [
+    "> Scanning system32...",
+    "> Checking active processes...",
+    "> Analyzing memory...",
+    "> Searching suspicious activity...",
+    "> Security violation detected!",
+    "> Attempting system recovery...",
+    "> CRITICAL ERROR 0x000000...",
+    "> Unauthorized process detected!",
+    "> System integrity compromised!",
+    "> Emergency scan in progress..."
+];
+
+setInterval(() => {
+
+    const box = document.getElementById("console");
+
+    const message =
+        messages[Math.floor(Math.random() * messages.length)];
+
+    box.innerHTML += "<br>" + message;
+
+    if (box.innerHTML.length > 1800) {
+        box.innerHTML = message;
+    }
+
+    box.scrollTop = box.scrollHeight;
+
+}, 700);
+
+</script>
+
+</body>
+</html>
+```
